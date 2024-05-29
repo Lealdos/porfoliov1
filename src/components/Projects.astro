@@ -1,0 +1,151 @@
+---
+import GitHub from './icons/GitHub.astro';
+import NextJS from './icons/NextJS.astro';
+import Tailwind from './icons/Tailwind.astro';
+import Link from './icons/Link.astro';
+import LinkButton from './LinkButton.astro';
+
+interface Tag {
+    background: string;
+    icon: Record<string, any>;
+}
+
+interface Tags {
+    [key: string]: Tag;
+}
+
+const TAGS: Tags = {
+    Next: {
+        background: 'bg-black text-white',
+        icon: NextJS,
+    },
+    Tailwind: {
+        background: 'bg-[#003159] text-white',
+        icon: Tailwind,
+    },
+};
+const PROJECTS = [
+    {
+        image: '/poem.jpg',
+        name: 'Poem Generator',
+        isActive: true,
+        description:
+            'A web application through which, with the assistance of an AI, you can upload any image. You will be able to visualize it, and after a short time, you will receive a poem that uses the previously uploaded image as inspiration.',
+        highlights: ['React', 'TypeScript', 'Tailwind', 'Gemini AI'],
+        link: 'https://regalo-ana.vercel.app/',
+        github: 'https://github.com/Lealdos/regalo-ana',
+    },
+    {
+        name: 'Future Store',
+        image: '/futureword.jpg',
+        isActive: true,
+        description:
+            'Creation of an E-commerce platform with functionalities including authentication, shopping cart, AI-powered virtual assistant, integration with the Shopify API, and more. It is built primarily using Next.js 14, TypeScript, Tailwind, and Zustand.',
+        highlights: [
+            'Next',
+            'OpenAI API',
+            'TypeScript',
+            'Vercel Deploy',
+            'ShopifyAPI',
+            'Tailwind',
+            'Zustand',
+            'SDK',
+        ],
+        link: 'https://shopify-ecommerce-three.vercel.app/',
+        github: 'https://github.com/Lealdos/Shopify-ecommerce',
+    },
+
+    {
+        name: 'Resdy',
+        image: '/resdyB.jpg',
+        isActive: false,
+        description:
+            "A powerful RESTfull API built with Prisma ORM, Node.js, TSOA, and TypeScript. This API serves as a robust backend for our application, providing seamless data management and powerful endpoint interactions. With TypeScript's typing and TSOA's automatic routing, this project ensures a scalable and maintainable codebase.",
+        highlights: [
+            'ORM',
+            'Prisma',
+            'Express',
+            'Docker',
+            'TypeScript',
+            'Tsoa',
+            'API REST',
+        ],
+        link: 'https://github.com/Lealdos/restify-v2-backend',
+        github: 'https://github.com/Lealdos/restify-v2-backend',
+    },
+    {
+        name: 'ToDo App With login',
+        image: '/ToDosphoto.jpg',
+        isActive: true,
+        description:
+            'This is a Todo List application built using React. It allows users to manage their tasks efficiently by adding, editing, and deleting items from their to-do list. Also the users can check their tasks list from any divice when they login using the auth feature and connect to the backed. ',
+        highlights: [
+            'Authentication',
+            'React',
+            'PostgreSQL',
+            'Modals',
+            'LocalStorages',
+            'Data Fetching',
+        ],
+        link: 'https://lealdos.github.io/TodoAppJS/',
+        github: 'https://github.com/Lealdos/TodoAppJS',
+    },
+];
+---
+
+<div class='flex flex-col gap-y-16'>
+    {
+        PROJECTS.map(
+            ({ image, name, description, highlights, link, github }) => (
+                <article class='flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0'>
+                    <div class='w-full md:w-1/2'>
+                        <div class='relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50'>
+                            <img
+                                alt='Recién llegado vs 5 años en Nueva Zelanda'
+                                class='object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105'
+                                loading='lazy'
+                                src={image}
+                            />
+                        </div>
+                    </div>
+
+                    <div class='w-full md:w-1/2 md:max-w-lg'>
+                        <h3 class='text-2xl font-bold text-gray-800 dark:text-gray-100'>
+                            {name}
+                        </h3>
+                        <div class='flex flex-wrap mt-2'>
+                            <div class='my-2 text-gray-700 dark:text-gray-300'>
+                                {description}
+                            </div>
+
+                            <ul class='flex flex-row mb-2 gap-2 flex-wrap '>
+                                {highlights.map((highlight) => (
+                                    <span
+                                        class={`flex items-center justify-center gap-1 text-md border border-gray-500 rounded-md px-2 py-1  p-1 ${TAGS[highlight]?.background} `}
+                                    >
+                                        {highlight}
+                                    </span>
+                                ))}
+                            </ul>
+
+                            <footer class='flex items-end justify-start mt-4 gap-x-4'>
+                                {github && (
+                                    <LinkButton href={github}>
+                                        <GitHub class='size-6' />
+                                        Code
+                                    </LinkButton>
+                                )}
+                                {link && (
+                                    <LinkButton href={link}>
+                                        <Link class='size-4' />
+                                        Preview
+                                    </LinkButton>
+                                )}
+                            </footer>
+                        </div>
+                    </div>
+                </article>
+            )
+        )
+    }
+</div>

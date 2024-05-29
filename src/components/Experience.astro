@@ -1,0 +1,44 @@
+---
+import ExperienceItem from "./ExperienceItem.astro";
+const EXPERIENCIE = [
+
+  {
+    company: "Surge Staffing",
+    title: "Onsite supervisor",
+    url: "https://surgestaffing.com/",
+    date: "05-05-2023",
+    endDate: null,
+    description:
+      "overseeing and managing on-site operations, ensuring compliance with safety regulations, supervising staff, and addressing any issues that may arise during the course of work.",
+    highlights: [""],
+  },
+  {
+    company: "FreeLancer",
+    title: "Software engineer",
+    date: "2020-06-01",
+    endDate: "2023-05-01",
+    description:
+      "crafting custom code, building websites or applications tailored to client needs, troubleshooting technical issues, and effectively communicating to understand and meet project requirements.",
+    highlights: ["Started the company"],
+  },
+  {
+    company: "Momentum labs",
+    title: "Full Stack Developer",
+    date: "2017-01-02",
+    endDate: "2018-06-01",
+    description:
+      "My responsibility was to analyze, design, develop, deploy, and test software solutions made with the following stacks: NestJs, javascript, HTML, CSS, fast API, python, Django, and Flask.",
+    highlights: ["Started the company"],
+  },
+];
+---
+
+<ol class="relative mt-16">
+  {
+    EXPERIENCIE.map((experiencie) => (
+      <li class="">
+        <ExperienceItem {...experiencie} />
+      </li>
+    ))
+  }
+</ol>
